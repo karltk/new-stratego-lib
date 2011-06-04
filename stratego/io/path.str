@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2011, Karl Trygve Kalleberg <karltk@strategoxt.org>>
+ * Licensed under the GNU Lesser General Public License v2.1
+ */ 
+
+module spoofax/io/path
+imports
+    stratego/term/string
+    stratego/term/traversal
+    
+strategies
+    
+  mkdirs =
+      string-split(|"/")
+    ; fold-left(make-single-dir | "") 
+      
+  /** @internal */
+  make-single-dir:
+    (sofar, next) -> sofar'
+  where
+      sofar' := <string-concat> [sofar, next]
+    ; <mkdir> sofar

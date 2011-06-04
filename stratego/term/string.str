@@ -1,0 +1,63 @@
+/*
+ * Copyright (c) 2011, Karl Trygve Kalleberg <karltk@strategoxt.org>
+ * Licensed under the GNU Lesser General Public License v2.1
+ */ 
+ 
+module stratego/term/string
+
+imports
+  libstratego-lib
+  
+strategies
+      
+  /** @type list(string) -> string */
+  string-concat = concat-strings
+  
+  /** @type list(string) * string (joinstring) -> string */
+  string-join = fail
+  
+  /** @type string * string (delimstring) -> list(string) */
+  string-split(|delimstring) = fail
+  
+  /** @type string * index -> list(string) */
+  string-split = fail
+   
+  /** @type string * regex -> list(string) */
+  string-match = fail
+  
+  /** @type string -> string */
+  string-to-upper = fail
+  
+  /** @type string -> string */
+  string-to-lower = fail
+   
+  /** @type string -> string */
+  string-underline-to-camel = fail
+   
+  /** @type string -> string */
+  string-camel-to-underline = fail
+   
+  /** @type string -> string */
+  string-capitalize = fail
+   
+  /** @type string -> string */
+  string-uncapitalize = fail
+  
+  /** @type string * string(quotesymbol) -> string */
+  string-quote = fail
+  
+  /** @type string * string(quotesymbol) -> string */
+  string-unquote = fail
+  
+  /** @type string * int (to) * string (from) -> string */
+  string-substring = fail
+  
+  /** @type string * string -> int */
+  string-find = fail
+      
+  /** @type string * string -> int */
+  string-rfind = fail
+   
+  /** @type string * list(term) -> string */
+  string-format = fail
+   

@@ -1,0 +1,19 @@
+/*
+ * Copyright (c) 2011, Karl Trygve Kalleberg <karltk@strategoxt.org>
+ * Licensed under the GNU Lesser General Public License v2.1
+ */ 
+
+module stratego/scratch
+imports
+  libstratego-lib 
+  
+strategies
+    
+    unimplemented = 
+        <failure> "Unimplemented"
+        
+    failure =
+        <fprintnl> (stderr(), <id>)
+      ; fail
+    
+    

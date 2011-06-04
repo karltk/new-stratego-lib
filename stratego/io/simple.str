@@ -1,0 +1,23 @@
+/*
+ * Copyright (c) 2011, Karl Trygve Kalleberg <karltk@strategoxt.org>>
+ * Licensed under the GNU Lesser General Public License v2.1
+ */ 
+ 
+module stratego/io/simple
+
+imports
+    libstratego-lib
+    
+strategies
+    
+  write-string-to-file =
+      ?(string, filename)
+    ; fd := <fopen> (filename, "w")
+    ; <fputs> (fd, string)
+    ; <fclose> fd
+      
+  read-string-from-file = ?(filename) ; fail
+  
+  write-term-as-baf = ?(filename, term) ; fail 
+  write-term-as-taf = ?(filename, term) ; fail
+  write-term-as-saf = ?(filename, term) ; fail
