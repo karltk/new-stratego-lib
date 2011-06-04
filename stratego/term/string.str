@@ -17,7 +17,10 @@ strategies
   string-join = fail
   
   /** @type string * string (delimstring) -> list(string) */
-  string-split(|delimstring) = fail
+  string-split(|delimstring) =
+      // FIXME this is not right, we should not use the 
+      //       chars in the string, but the string itself 
+      string-tokenize(|<explode-string> delimstring)
   
   /** @type string * index -> list(string) */
   string-split = fail

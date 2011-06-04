@@ -9,14 +9,21 @@ imports
     stratego/term/traversal
     
 strategies
-    
+  
+  /** @type string -> ?success */
   mkdirs =
       string-split(|"/")
-    ; fold-left(make-single-dir | "") 
+    ; fold-left(make-single-dir | ".") 
       
   /** @internal */
   make-single-dir:
     (sofar, next) -> sofar'
   where
-      sofar' := <string-concat> [sofar, next]
-    ; <mkdir> sofar
+      sofar' := <string-concat> [next, "/", sofar]
+    ; <dir-exists <+ mkdir> sofar'
+      
+  /** @type string -> ?success */
+  dir-exists =
+      file-exists 
+    ; filemode 
+    ; isdir
