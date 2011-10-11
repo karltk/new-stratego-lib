@@ -29,10 +29,10 @@ strategies
   string-match = fail
   
   /** @type string -> string */
-  string-to-upper = fail
+  string-to-upper = string-explode ; map(to-upper) ; string-implode
   
   /** @type string -> string */
-  string-to-lower = fail
+  string-to-lower = string-explode ; map(to-lower) ; string-implode
    
   /** @type string -> string */
   string-underline-to-camel = fail
@@ -41,10 +41,10 @@ strategies
   string-camel-to-underline = fail
    
   /** @type string -> string */
-  string-capitalize = fail
+  string-capitalize = string-explode ; [to-upper | id ] ; string-implode
    
   /** @type string -> string */
-  string-uncapitalize = fail
+  string-uncapitalize = string-explode ; [to-lower | id ] ; string-implode
   
   /** @type string * string(quotesymbol) -> string */
   string-quote = fail
@@ -63,4 +63,9 @@ strategies
    
   /** @type string * list(term) -> string */
   string-format = fail
-   
+  
+  /** @type string -> list(int) */ 
+  string-explode = explode-string
+  
+  /** @type list(int) -> string */
+  string-implode = implode-string
