@@ -6,7 +6,31 @@
 module stratego/term/traversal
 imports
   libstratego-lib
-  
+
 strategies
-    
-    fold-left(s|null) = <foldl(s)> (<id>, null)
+
+  fold-left(s|zero) =
+    <rec r(
+       \ ([], acc) -> acc \
+    <+ \ ([x | xs], acc) -> <r> (xs, <s> (x, acc)) \
+    )> (<id>, zero) 
+
+  fold-left1(s) = 
+    \ [acc | xs] -> (xs, acc) \ 
+    ; rec r(
+       \ ([], acc) -> acc \
+    <+ \ ([x | xs], acc) -> <r> (xs, <s> (x, acc)) \
+    ) 
+
+  fold-right(s|zero) =
+    <rec r(
+       \ ([], acc) -> acc \
+    <+ \ ([x | xs], acc) -> <s> (x, <r> (xs, acc)) \
+    )> (<id>, zero) 
+
+  fold-right1(s) =
+      split-last 
+    ; rec r(
+       \ ([], acc) -> acc \
+    <+ \ ([x | xs], acc) -> <s> (x, <r> (xs, acc)) \
+    )
