@@ -14,7 +14,8 @@ strategies
   string-concat = concat-strings
   
   /** @type list(string) * string (joinstring) -> string */
-  string-join = fail
+  string-join(|c) = <foldl(\(x,y) -> <concat-strings> [y, c, x]\)> (<Tl>, <Hd>)
+  string-join(|c) : [] -> ""
   
   /** @type string * string (delimstring) -> list(string) */
   string-split(|delimstring) =
