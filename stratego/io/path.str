@@ -7,21 +7,21 @@ module spoofax/io/path
 imports
     stratego/term/string
     stratego/term/traversal
-    
+
 strategies
-  
+
   /** @type string -> ?success */
   mkdirs =
       string-split(|"/")
     ; fold-left(make-single-dir | ".") 
-      
+
   /** @internal */
   make-single-dir:
     (sofar, next) -> sofar'
   where
       sofar' := <string-concat> [next, "/", sofar]
     ; <dir-exists <+ mkdir> sofar'
-      
+
   /** @type string -> ?success */
   dir-exists =
       file-exists 

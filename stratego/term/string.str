@@ -7,66 +7,66 @@ module stratego/term/string
 
 imports
   libstratego-lib
-  
+
 strategies
-      
+
   /** @type list(string) -> string */
   string-concat = concat-strings
-  
+
   /** @type list(string) * string (joinstring) -> string */
   string-join(|c) = <foldl(\(x,y) -> <concat-strings> [y, c, x]\)> (<Tl>, <Hd>)
   string-join(|c) : [] -> ""
-  
+
   /** @type string * string (delimstring) -> list(string) */
   string-split(|delimstring) =
       // FIXME this is not right, we should not use the 
       //       chars in the string, but the string itself 
       string-tokenize(|<explode-string> delimstring)
-  
+
   /** @type string * index -> list(string) */
   string-split = fail
-   
+
   /** @type string * regex -> list(string) */
   string-match = fail
-  
+
   /** @type string -> string */
   string-to-upper = string-explode ; map(to-upper) ; string-implode
-  
+
   /** @type string -> string */
   string-to-lower = string-explode ; map(to-lower) ; string-implode
-   
+
   /** @type string -> string */
   string-underline-to-camel = fail
-   
+
   /** @type string -> string */
   string-camel-to-underline = fail
-   
+
   /** @type string -> string */
   string-capitalize = string-explode ; [to-upper | id ] ; string-implode
-   
+
   /** @type string -> string */
   string-uncapitalize = string-explode ; [to-lower | id ] ; string-implode
-  
+
   /** @type string * string(quotesymbol) -> string */
   string-quote = fail
-  
+
   /** @type string * string(quotesymbol) -> string */
   string-unquote = fail
-  
+
   /** @type string * int (to) * string (from) -> string */
   string-substring = fail
-  
+
   /** @type string * string -> int */
   string-find = fail
-      
+
   /** @type string * string -> int */
   string-rfind = fail
-   
+
   /** @type string * list(term) -> string */
   string-format = fail
-  
+
   /** @type string -> list(int) */ 
   string-explode = explode-string
-  
+
   /** @type list(int) -> string */
   string-implode = implode-string

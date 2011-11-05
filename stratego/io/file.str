@@ -1,0 +1,28 @@
+module io/file
+
+signature
+  constructors
+   File : Term -> File
+
+strategies
+
+  /*
+   * @type string -> File
+   */
+  file-open = fail
+
+  /*
+   * @type (string, mode) -> File
+   */
+  file-open = fail
+
+  /*
+   * @type File -> ?
+   */
+  file-close = fail
+
+
+  /*
+   * @type File -> List(String)
+   */
+  file-readlines = fail
